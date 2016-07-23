@@ -7,7 +7,7 @@ android {
     defaultConfig {
         applicationId "com.example.kevinrotairo.androidcodecamp"
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -17,6 +17,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -24,4 +25,5 @@ dependencies {
     compile 'com.android.support:design:23.2.1'
     compile 'com.android.support:recyclerview-v7:23.2.1'
     compile 'com.android.support:cardview-v7:23.2.1'
+    compile 'com.google.android.gms:play-services:9.2.1'
 }

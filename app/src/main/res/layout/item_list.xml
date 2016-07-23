@@ -1,15 +1,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
-    android:padding="@dimen/md_keylines">
+    android:padding="@dimen/md_keylines"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="?android:attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/list_avatar"
         android:layout_width="@dimen/avator_size"
         android:layout_height="@dimen/avator_size"
         android:scaleType="centerCrop"
-        android:src="@drawable/paris" />
+        android:src="@drawable/fire" />
 
     <TextView
         android:id="@+id/list_title"
@@ -19,7 +22,9 @@
         android:layout_toRightOf="@+id/list_avatar"
         android:text="@string/item_title"
         android:textAppearance="?attr/textAppearanceListItem"
-        android:textSize="@dimen/article_subheading" />
+        android:textSize="@dimen/article_subheading"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
 
     <TextView
         android:id="@+id/list_desc"

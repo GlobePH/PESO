@@ -10,9 +10,12 @@ import android.view.ViewGroup;
 
 import com.example.kevinrotairo.androidcodecamp.R;
 
-/**
- * Created by Macadamia on 3/28/2016.
- */
-public class CardContentFragment extends Fragment {
 
+public class CardContentFragment extends Fragment {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.item_card, container, false);
+
+        return view;
+    }
 }

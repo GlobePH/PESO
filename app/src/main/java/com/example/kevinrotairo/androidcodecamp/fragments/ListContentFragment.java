@@ -1,6 +1,7 @@
 package com.example.kevinrotairo.androidcodecamp.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,26 +9,47 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ImageButton;
+import android.view.View.OnClickListener;
+import android.util.Log;
 
+import com.example.kevinrotairo.androidcodecamp.MainActivity;
 import com.example.kevinrotairo.androidcodecamp.R;
 import com.example.kevinrotairo.androidcodecamp.model.ListData;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Macadamia on 3/28/2016.
- */
+
+
 public class ListContentFragment extends Fragment {
     private ArrayList<ListData> datasample= new ArrayList<ListData>();
+
+    public void onCreate(String filename,Context context){
+        pfreadFromFile( context);
+        ListData sample;
+
+        /*for(int i=1;i<=5;i++) {
+            sample = new ListData("", "description");
+            datasample.add(sample);
+        }*/
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(
                 R.layout.recycler_view, container, false);
-        populateData();
+        //populateData();
+        onCreate(Constants.FILENAME,getContext());
         ContentAdapter adapter = new ContentAdapter(datasample);
         recyclerView.setAdapter(adapter);
         recyclerView.setHasFixedSize(true);
@@ -35,16 +57,44 @@ public class ListContentFragment extends Fragment {
         return recyclerView;
 
     }
-    public void populateData(){
-        ListData sample;
 
-        for(int i=1;i<=10;i++) {
-            sample = new ListData("abc"+i, "description");
-            datasample.add(sample);
+    public void pfreadFromFile(Context context){
+        Constants.readFromFile = null;
+        //Constants.numLinesRead = 0;
+        ListData sample;
+        int pfNumLinesRead = 0;
+        String finSpecLocation;
+        final String TAG = MainActivity.class.getName();
+        try {
+            FileInputStream inputStream =context.openFileInput(Constants.FILENAME);
+
+            if ( inputStream != null ) {
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String receiveString = "";
+                StringBuilder stringBuilder = new StringBuilder();
+
+                while ((receiveString = bufferedReader.readLine()) != null ) {
+                    //Constants.numLinesRead = Constants.numLinesRead + 1;
+                    pfNumLinesRead = pfNumLinesRead + 1;
+                    //stringBuilder.append(receiveString + "\n");
+                    ;
+                    String[] separated = receiveString.split(":");
+                    sample = new ListData(separated[0], separated[1]);
+                    datasample.add(sample);
+                }
+
+                inputStream.close();
+                //Constants.readFromFile = stringBuilder.toString();
+            }
+        }
+        catch (FileNotFoundException e) {
+            Log.e(TAG, "File not found: " + e.toString());
+        } catch (IOException e) {
+            Log.e(TAG, "Can not read file: " + e.toString());
         }
 
     }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         ImageView list_avatar;
         TextView list_title;
@@ -58,7 +108,7 @@ public class ListContentFragment extends Fragment {
         }
 
         //public ViewHolder(LayoutInflater inflater, ViewGroup parent) {
-          //  super(inflater.inflate(R.layout.item_list, parent, false));
+        //  super(inflater.inflate(R.layout.item_list, parent, false));
         //}
     }
     /**
@@ -66,7 +116,7 @@ public class ListContentFragment extends Fragment {
      */
     public static class ContentAdapter extends RecyclerView.Adapter<ListContentFragment.ViewHolder> {
         // Set numbers of List in RecyclerView.
-        private static final int LENGTH = 10;
+        private static final int LENGTH = 5;
         private ArrayList<ListData> datasample= new ArrayList<ListData>();
 
         public ContentAdapter(ArrayList<ListData> datasample) {
@@ -89,9 +139,8 @@ public class ListContentFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return LENGTH;
+            return datasample.size();
         }
 
     }
-
 }

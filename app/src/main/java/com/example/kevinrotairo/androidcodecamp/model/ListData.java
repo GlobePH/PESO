@@ -1,8 +1,5 @@
 package com.example.kevinrotairo.androidcodecamp.model;
 
-/**
- * Created by Kevin Rotairo on 5/7/2016.
- */
 public class ListData {
     private String description;
     private String title;

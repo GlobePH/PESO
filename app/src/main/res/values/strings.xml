@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">AndroidCodeCamp</string>
-    <string name="item_title">"AndroidCodeCamp"</string>
+    <string name="app_name">"PH Emergency Services"</string>
+    <string name="item_title">"PH Emergency Services"</string>
     <string name="item_desc">"This is an image"</string>
    <string name="action_settings">"settings"</string>
 </resources>
