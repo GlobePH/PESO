@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:padding="@dimen/tile_padding">
+
+    <ImageButton
+        android:layout_width="@dimen/tile_height"
+        android:layout_height="@dimen/tile_height"
+        android:id="@+id/imageButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_margin="@dimen/tile_padding"
+        android:layout_alignParentBottom="false"
+        android:contentDescription="Fire"
+        android:focusableInTouchMode="true"
+        android:clickable="true"
+        android:src="@drawable/fire"
+        android:background="@color/dark_grey"/>
+        />
+
+    <ImageButton
+        android:layout_width="@dimen/tile_height"
+        android:layout_height="@dimen/tile_height"
+        android:id="@+id/imageButton2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/earthquake1" />
+
+    <ImageButton
+        android:layout_width="@dimen/tile_height"
+        android:layout_height="@dimen/tile_height"
+        android:id="@+id/imageButton3"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/flood1" />
+
+    <ImageButton
+        android:layout_width="@dimen/tile_height"
+        android:layout_height="@dimen/tile_height"
+        android:id="@+id/imageButton4"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/emergency1" />
+
+</RelativeLayout>
